@@ -20,7 +20,7 @@ export default function LabelBottomNavigation() {
 
   return (
     <BottomNavigation
-      sx={{ width: "100%", position: "fixed", bottom: 0,background:"#0088cc",zIndex:2 }}
+      sx={{ width: "100%", position: "fixed", bottom: 0,background:"#0088cc",zIndex:2,padding:"0 100px" }}
       value={value}
       showLabels
       onChange={handleChange}
@@ -44,8 +44,8 @@ export default function LabelBottomNavigation() {
         icon={<LocationOnIcon />}
       />
         <BottomNavigationAction
-        label="Searching"
-        value="searching"
+        label="Search"
+        value="search"
         style={{color:"white"}}
         onClick={()=>{navigate(`/search`);}}
         icon={<Search />}
