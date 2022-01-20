@@ -58,6 +58,7 @@ export default function MenuAppBar({ width, type, parentFunc }) {
               Webers.uz
             </Typography>
           )}
+          <p>{type}</p>
           {!type && (
             <Search style={{ width: "100%" }}>
               <div style={{ position: "absolute", left: "1%", top: "20%" }}>

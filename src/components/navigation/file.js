@@ -49,8 +49,8 @@ export default function MusicItem(props) {
     return (
       <Box
         sx={{
-          width: "90%",
-          marginLeft: "7%",
+          width: "80%",
+          marginLeft: "10%",
           position: "absolute",
           bottom: "-20px",
           fontSize: 2,
