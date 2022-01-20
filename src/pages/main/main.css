@@ -1,0 +1,81 @@
+.main__file {
+  width: 100%;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-bottom: 5%;
+  overflow-y: scroll;
+  max-height: 85vh;
+  background-color: #ececec;
+}
+.main__player {
+  display: flex;
+  flex-direction: column;
+}
+.player {
+  flex: 2;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+.loading {
+  width: 0px;
+  height: 0px;
+  border-radius: 50%;
+  background-color: #0088cc;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  animation: loading 1s infinite linear;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.1px;
+  color:blueviolet;
+  font-weight: bold;
+}
+@keyframes loading {
+  0% {
+    box-shadow: #0088cc 0 0 0 0px;
+  }
+  100% {
+    box-shadow: #0088cc20 0 0 0 40px;
+  }
+}
+.player_ {
+  width: 50%;
+  margin: auto;
+  margin-top: 2vh;
+  height: 83vh;
+  background-color: #ececec;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.image {
+  width: 100%;
+  flex: 10;
+}
+.range {
+  width: 100%;
+  flex: 1;
+}
+.controller {
+  width: 100%;
+  flex: 2;
+}
+@media screen and (max-width: 678px) {
+  .main__file {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .file {
+    width: 100%;
+    padding: 0 2% !important;
+  }
+}
