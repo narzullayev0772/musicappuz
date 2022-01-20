@@ -4,11 +4,10 @@ import MainController from "../../components/navigation/mainController";
 const MainEuro = ({ type}) => {
 
   const [dataEuro, setDataEuro] = useState(null);
-  const [page,setPageRu] = useState(1);
 
   useEffect(() => {
     axios
-      .get("https://api-music-uz.herokuapp.com/music/api/udar/"+page, {
+      .get("https://api-music-uz.herokuapp.com/music/api/udar/", {
         headers: {
           "Set-Cookie": "SameSite=Secure",
         },
@@ -16,7 +15,7 @@ const MainEuro = ({ type}) => {
       .then(({ data }) => {
         setDataEuro(data);
       });
-  }, [page]);  
+  }, []);  
   return (
     <MainController data={dataEuro} type={type}/>
   );
