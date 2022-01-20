@@ -3,7 +3,7 @@
   flex: 1;
   flex-direction: column;
   align-items: flex-end;
-  padding-bottom: 5%;
+  padding-bottom: 15%;
   overflow-y: scroll;
   max-height: 85vh;
   background-color: #ececec;
