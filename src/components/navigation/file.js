@@ -18,17 +18,19 @@ const TinyText = styled(Typography)({
 });
 
 export default function MusicItem(props) {
+  const [position, setPosition] = React.useState(0);
   const ref = React.useRef();
   const [duration, setDuration] = React.useState(0);
+  const [click, setClick] = React.useState(false);
   function getDuration(cb) {
     ref.current.addEventListener("loadedmetadata", function () {
       cb(ref.current.duration);
+      setPosition(0);
     });
     ref.current.addEventListener("ended", function () {
       setClick(false);
     });
   }
-  const [click, setClick] = React.useState(false);
 
   document.addEventListener(
     "play",
@@ -44,7 +46,6 @@ export default function MusicItem(props) {
   );
 
   function DiscreteSliderLabel({ click }) {
-    const [position, setPosition] = React.useState(0);
     function formatDuration(value) {
       const minute = Math.floor(value / 60);
       const secondLeft = value - minute * 60;

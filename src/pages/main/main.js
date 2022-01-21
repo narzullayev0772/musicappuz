@@ -15,7 +15,6 @@ const Main = ({ type }) => {
       })
       .then(({ data }) => {
         setDataUZ(data);
-        console.log(data);
       });
   }, [page]);
 
