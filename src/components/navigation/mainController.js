@@ -18,7 +18,7 @@ const MainController = ({data,type,parentFunc}) => {
         <div className="main__player">
           <div className="player"></div>
             <div className="main__file">
-              {(data && data!==undefined ) ? (
+              {(data && data!==null ) ? (
                  data.tracks.map(
                     (music, index) =>
                     music && (

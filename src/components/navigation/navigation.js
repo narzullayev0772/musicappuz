@@ -79,6 +79,9 @@ export default function MenuAppBar({ width, type, parentFunc }) {
                     e.preventDefault();
                     parentFunc(search);
                   }
+                  else{
+                    parentFunc(null);
+                  }
                 }}
                 onChange={(e) => {
                   setSearch(e.currentTarget.value);
