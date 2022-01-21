@@ -161,7 +161,7 @@ export default function MusicItem(props) {
         {props && (
           <audio
             style={{ display: "none" }}
-            src={props.url.replaceAll(`"`, "")}
+            src={props.url}
             controls
             preload="none"
             ref={ref}
