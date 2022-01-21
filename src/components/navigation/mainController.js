@@ -5,7 +5,7 @@ import MenuAppBar from "../../components/navigation/navigation";
 import Loading from "../../components/navigation/loading";
 import { useEffect, useRef, useState } from "react";
 import "../../pages/main/main.css"
-const MainController = ({data,type,parentFunc,setPage}) => {
+const MainController = ({data,type,parentFunc}) => {
   const ref = document.getElementsByClassName("main__file")[0];
   const [bool, setBool] = useState(true);
   const widthLength = useRef(window.innerWidth);
@@ -24,9 +24,9 @@ const MainController = ({data,type,parentFunc,setPage}) => {
                     music && (
                       <MusicItem
                       key={index}
-                      name={music.trackAutor.replaceAll(`"`, "")}
-                      url={music.track.replaceAll(`"`, "")}
-                      author={music.trackName.replaceAll(`"`, "")}
+                      name={music.trackAuthor}
+                      url={music.track}
+                      author={music.trackName}
                       />
                       )
                       )

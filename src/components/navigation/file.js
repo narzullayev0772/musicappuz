@@ -18,10 +18,8 @@ const TinyText = styled(Typography)({
 });
 
 export default function MusicItem(props) {
-  const [click, setClick] = React.useState(false);
-  const [duration, setDuration] = React.useState(0);
   const ref = React.useRef();
-
+  const [duration, setDuration] = React.useState(0);
   function getDuration(cb) {
     ref.current.addEventListener("loadedmetadata", function () {
       cb(ref.current.duration);
@@ -30,8 +28,20 @@ export default function MusicItem(props) {
       setClick(false);
     });
   }
+  const [click, setClick] = React.useState(false);
 
-  function DiscreteSliderLabel() {
+
+  document.addEventListener('play', function(e){
+    var audios = document.getElementsByTagName('audio');
+    for(var i = 0, len = audios.length; i < len;i++){
+        if(audios[i] !== e.target){
+            audios[i].pause();
+          }
+    }
+}, true);
+
+
+  function DiscreteSliderLabel({click}) {
     const [position, setPosition] = React.useState(0);
     function formatDuration(value) {
       const minute = Math.floor(value / 60);
@@ -47,6 +57,7 @@ export default function MusicItem(props) {
       }
     }, []);
     return (
+      click &&
       <Box
         sx={{
           width: "80%",
@@ -120,7 +131,9 @@ export default function MusicItem(props) {
               ref.current.pause();
             } else {
               setClick(true);
-              ref.current.play();
+              ref.current.play().catch(er=>{
+                console.log(er);
+              })
               getDuration(function (length) {
                 setDuration(Math.floor(length));
               });
@@ -137,21 +150,23 @@ export default function MusicItem(props) {
             overflow: "hidden",
             whiteSpace: "nowrap",
           }}
-          primary={props.name
+          primary={props.name.replaceAll(`"`,"")
             .replaceAll("&#039;", "'")
-            .replaceAll("&amp;", "&")}
-          secondary={props.author
+            .replaceAll("&amp;", "&")
+          }
+          secondary={props.author.replaceAll(`"`,"")
             .replaceAll("&#039;", "'")
-            .replaceAll("&amp;", "&")}
+            .replaceAll("&amp;", "&")
+          }
         />
         <audio
           style={{ display: "none" }}
-          src={props.url}
+          src={props.url.replaceAll(`"`,"")}
           controls
           preload="none"
           ref={ref}
         ></audio>
-        {click && <DiscreteSliderLabel />}
+         <DiscreteSliderLabel click={click} />
       </ListItem>
     </List>
   );

@@ -9,7 +9,6 @@ import Search from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 
 export default function LabelBottomNavigation() {
-
   let navigate = useNavigate();
 
   const [value, setValue] = React.useState("uzbek");
@@ -20,7 +19,14 @@ export default function LabelBottomNavigation() {
 
   return (
     <BottomNavigation
-      sx={{ width: "100%", position: "fixed", bottom: 0,background:"#0088cc",zIndex:2,padding:"0 100px" }}
+      sx={{
+        width: "100%",
+        position: "fixed",
+        bottom: 0,
+        background: "#0088cc",
+        zIndex: 2,
+        padding: "0 100px",
+      }}
       value={value}
       showLabels
       onChange={handleChange}
@@ -28,9 +34,9 @@ export default function LabelBottomNavigation() {
       <BottomNavigationAction
         label="Uzbek"
         value="uzbek"
-        style={{color:"white"}}
+        style={{ color: "white" }}
         icon={<Home />}
-        onClick={()=>{
+        onClick={() => {
           setTimeout(() => {
             navigate(`/uzmusic`);
           }, 100);
@@ -39,29 +45,37 @@ export default function LabelBottomNavigation() {
       <BottomNavigationAction
         label="Russian"
         value="russian"
-        style={{color:"white"}}
-        onClick={()=>{navigate(`/rumusic`);}}
+        style={{ color: "white" }}
+        onClick={() => {
+          navigate(`/rumusic`);
+        }}
         icon={<LocationOnIcon />}
       />
-        <BottomNavigationAction
+      <BottomNavigationAction
         label="Search"
         value="search"
-        style={{color:"white"}}
-        onClick={()=>{navigate(`/search`);}}
+        style={{ color: "white" }}
+        onClick={() => {
+          navigate(`/search`);
+        }}
         icon={<Search />}
       />
       <BottomNavigationAction
         label="Turkish"
         value="turkish"
-        style={{color:"white"}}
-        onClick={()=>{navigate(`/turkmusic`);}}
-        icon={< FavoriteIcon />}
+        style={{ color: "white" }}
+        onClick={() => {
+          navigate(`/turkmusic`);
+        }}
+        icon={<FavoriteIcon />}
       />
       <BottomNavigationAction
         label="Special"
         value="special"
-        style={{color:"white"}}
-        onClick={()=>{navigate(`/euromusic`);}}
+        style={{ color: "white" }}
+        onClick={() => {
+          navigate(`/euromusic`);
+        }}
         icon={<FolderIcon />}
       />
     </BottomNavigation>

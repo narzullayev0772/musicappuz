@@ -23,7 +23,7 @@ const MainSearch = ({ type }) => {
       console.error('Error:', error);
     });
   }, [value]);
-  return <MainController data={result} type={type} parentFunc={setvalue} />;
+  return <MainController data={value&&result} type={type} parentFunc={setvalue} />;
 };
 
 export default MainSearch;
