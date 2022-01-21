@@ -24,7 +24,7 @@ const MainController = ({data,type,parentFunc}) => {
                     music && (
                       <MusicItem
                       key={index}
-                      name={music.trackAuthor}
+                      name={music.trackAutor}
                       url={music.track}
                       author={music.trackName}
                       />
