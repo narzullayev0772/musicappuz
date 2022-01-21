@@ -154,14 +154,8 @@ export default function MusicItem(props) {
               overflow: "hidden",
               whiteSpace: "nowrap",
             }}
-            primary={props.name
-              .replaceAll(`"`, "")
-              .replaceAll("&#039;", "'")
-              .replaceAll("&amp;", "&")}
-            secondary={props.author
-              .replaceAll(`"`, "")
-              .replaceAll("&#039;", "'")
-              .replaceAll("&amp;", "&")}
+            primary={props.name}
+            secondary={props.author}
           />
         )}
         {props && (
