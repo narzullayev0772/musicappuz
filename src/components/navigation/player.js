@@ -141,7 +141,7 @@ export default function Player(props) {
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 fontWeight: "500",
-                color: "#00000095", maxWidth:"100px"
+                color: "#00000095", maxWidth:"200px"
               }}
             >
               {props.trackName}
