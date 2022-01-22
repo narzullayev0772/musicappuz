@@ -175,7 +175,7 @@ export default function Player(props) {
                 }
               }}
             >
-              {!paused ? (
+              {!paused && props.click ? (
                 <PlayArrowRounded htmlColor={mainIconColor} />
               ) : (
                 <PauseRounded htmlColor={mainIconColor} />
