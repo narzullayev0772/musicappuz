@@ -141,7 +141,7 @@ export default function Player(props) {
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 fontWeight: "500",
-                color: "#00000095", maxWidth:"70%"
+                color: "#00000095", maxWidth:"100px"
               }}
             >
               {props.trackName}
@@ -175,7 +175,7 @@ export default function Player(props) {
                 }
               }}
             >
-              {!paused && props.click ? (
+              {!paused ? (
                 <PlayArrowRounded htmlColor={mainIconColor} />
               ) : (
                 <PauseRounded htmlColor={mainIconColor} />
