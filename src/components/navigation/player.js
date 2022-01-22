@@ -180,12 +180,7 @@ export default function Player(props) {
               ) : (
                 <PauseRounded htmlColor={mainIconColor} />
               )}
-            </IconButton>
-            {/*<IconButton>
-              <a href={props.tracks} download>
-              <Download htmlColor={mainIconColor} fontSize="small" />
-              </a>
-            </IconButton>*/}
+            
           </div>
         </Box>
       </Widget>
