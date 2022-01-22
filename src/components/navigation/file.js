@@ -2,122 +2,26 @@ import * as React from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import Play from "@mui/icons-material/PlayCircle";
-import Pause from "@mui/icons-material/PauseCircle";
-import Box from "@mui/material/Box";
-import Slider from "@mui/material/Slider";
+import Music from "@mui/icons-material/MusicNote";
+import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import IconButton from "@mui/material/IconButton";
-import { Typography } from "@mui/material";
-import { styled } from "@mui/system";
-
-const TinyText = styled(Typography)({
-  fontSize: "0.75rem",
-  opacity: 0.38,
-  fontWeight: 500,
-  letterSpacing: 0.2,
-});
+import Loading from "./loading";
 
 export default function MusicItem(props) {
-  const [position, setPosition] = React.useState(0);
-  const ref = React.useRef();
-  const [duration, setDuration] = React.useState(0);
-  const [click, setClick] = React.useState(false);
-  function getDuration(cb) {
-    ref.current.addEventListener("loadedmetadata", function () {
-      cb(ref.current.duration);
-      setPosition(0);
-    });
-    ref.current.addEventListener("ended", function () {
-      setClick(false);
-    });
-  }
+  const [click, setClick] = React.useState(props.click);
 
-  document.addEventListener(
-    "play",
-    function (e) {
-      var audios = document.getElementsByTagName("audio");
-      for (var i = 0, len = audios.length; i < len; i++) {
-        if (audios[i] !== e.target) {
-          audios[i].pause();
-        }
-      }
-    },
-    true
-  );
-
-  function DiscreteSliderLabel({ click }) {
-    function formatDuration(value) {
-      const minute = Math.floor(value / 60);
-      const secondLeft = value - minute * 60;
-      return `${minute}:${secondLeft < 10 ? `0${secondLeft}` : secondLeft}`;
-    }
-    React.useEffect(() => {
-      const timer = setInterval(() => {
-        setPosition((prev) => prev + 1);
-      }, 1000);
-      return () => {
-        clearTimeout(timer);
-      };
-    }, []);
-    return (
-      click && (
-        <Box
-          sx={{
-            width: "80%",
-            marginLeft: "10%",
-            position: "absolute",
-            bottom: "-20px",
-            fontSize: 2,
-          }}
-        >
-          <Slider
-            aria-label="time-indicator"
-            size="small"
-            value={position}
-            min={0}
-            step={1}
-            max={duration}
-            onChange={(_, value) => {
-              setPosition(value);
-              ref.current.currentTime = value;
-            }}
-            sx={{
-              height: 4,
-              "& .MuiSlider-thumb": {
-                width: 8,
-                height: 8,
-                transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
-                "&:before": {
-                  boxShadow: "0 2px 12px 0 rgba(0,0,0,0.4)",
-                },
-                "&.Mui-active": {
-                  width: 20,
-                  height: 20,
-                },
-              },
-              "& .MuiSlider-rail": {
-                opacity: 0.28,
-              },
-            }}
-          />
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              mt: -2,
-            }}
-          >
-            <TinyText>{formatDuration(position)}</TinyText>
-            <TinyText>-{formatDuration(duration - position)}</TinyText>
-          </Box>
-        </Box>
-      )
-    );
-  }
-
+  const [playing, setPlaying] = React.useState(false);
   return (
-    <List className="file" sx={{ padding: "8px" }}>
+    <List
+      className="file"
+      sx={{ padding: "8px" }}
+      onClick={() => {
+        setClick(false);
+        props.getUrl(props);
+        setPlaying(false);
+        props.getClick(true)
+      }}
+    >
       <ListItem
         style={{
           background:
@@ -132,21 +36,14 @@ export default function MusicItem(props) {
           onClick={() => {
             if (click) {
               setClick(false);
-              ref.current.pause();
             } else {
               setClick(true);
-              ref.current.play().catch((er) => {
-                console.log(er);
-              });
-              getDuration(function (length) {
-                setDuration(Math.floor(length));
-              });
             }
           }}
           sx={{ color: "#0088cc", fontSize: "large" }}
           size="large"
         >
-          {click ? <Pause fontSize="large" /> : <Play fontSize="large" />}
+          <Music sx={{ fontSize: 30 }} />
         </IconButton>
         {props && (
           <ListItemText
@@ -154,21 +51,25 @@ export default function MusicItem(props) {
               textOverflow: "ellipsis",
               overflow: "hidden",
               whiteSpace: "nowrap",
+              maxWidth: "70%",
             }}
-            primary={props.name}
-            secondary={props.author}
+            primary={props.trackName}
+            secondary={props.trackAutor}
           />
         )}
-        {props && (
-          <audio
-            style={{ display: "none" }}
-            src={props.url}
-            controls
-            preload="none"
-            ref={ref}
-          ></audio>
+        {playing && (
+          <>
+            <a href={props.track} download={props.track}>
+              <CloudDownloadIcon
+                fontSize="small"
+                sx={{ color: "#ececec", cursor: "pointer" }}
+              />
+            </a>
+            <div style={{ position: "absolute", right: 20 }}>
+              <Loading />
+            </div>
+          </>
         )}
-        <DiscreteSliderLabel click={click} />
       </ListItem>
     </List>
   );

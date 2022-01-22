@@ -7,11 +7,7 @@ const MainEuro = ({ type}) => {
 
   useEffect(() => {
     axios
-      .get("https://api-music-uz.herokuapp.com/music/api/udar/", {
-        headers: {
-          "Set-Cookie": "SameSite=Secure",
-        },
-      })
+      .get("https://api-music-uz.herokuapp.com/music/api/udar/")
       .then(({ data }) => {
         setDataEuro(data);
       });

@@ -6,11 +6,7 @@ const MainTurk = ({ type , data,id }) => {
   const [dataTurk, setDataTurk] = useState(null);
   useEffect(() => {
     axios
-      .get("https://api-music-uz.herokuapp.com/music/api/turk", {
-        headers: {
-          "Set-Cookie": "SameSite=Secure",
-        },
-      })
+      .get("https://api-music-uz.herokuapp.com/music/api/turk")
       .then(({ data }) => {
         setDataTurk(data);
       });

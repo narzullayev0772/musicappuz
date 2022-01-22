@@ -7,11 +7,7 @@ const MainRu = ({ type}) => {
   
   useEffect(() => {
     axios
-      .get("https://api-music-uz.herokuapp.com/music/api/ru", {
-        headers: {
-          "Set-Cookie": "SameSite=Secure",
-        },
-      })
+      .get("https://api-music-uz.herokuapp.com/music/api/ru")
       .then(({ data }) => {
         setDataRu(data);
       });
