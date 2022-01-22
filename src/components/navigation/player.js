@@ -6,7 +6,7 @@ import Slider from "@mui/material/Slider";
 import IconButton from "@mui/material/IconButton";
 import PauseRounded from "@mui/icons-material/PauseRounded";
 import PlayArrowRounded from "@mui/icons-material/PlayArrowRounded";
-import { Download, Loop } from "@mui/icons-material";
+import { Loop } from "@mui/icons-material";
 
 const Widget = styled("div")(({ theme }) => ({
   padding: 16,
@@ -63,7 +63,7 @@ export default function Player(props) {
   function formatDuration(value) {
     const minute = Math.floor(value / 60);
     const secondLeft = value - minute * 60;
-    return `${minute}:${secondLeft < 9 ? `0${secondLeft}` : secondLeft}`;
+    return `${minute}:${secondLeft < 10 ? `0${secondLeft}` : secondLeft}`;
   }
   const mainIconColor = theme.palette.mode === "dark" ? "#fff" : "#000";
   return (
