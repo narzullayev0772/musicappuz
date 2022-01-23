@@ -52,14 +52,14 @@ const MainController = ({ data, type, parentFunc }) => {
         </div>
       </div>
       <div style={{ position: "fixed", width: "100%" }}>
-        <Player
+        {click&&<Player
           trackName={url.trackName}
           tracks={url.track}
           trackAutor={url.trackAutor}
           url={played}
           click={click}
           items={items}
-        />
+        />}
       </div>
       {!bool && <LabelBottomNavigation />}
     </div>

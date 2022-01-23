@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import PauseRounded from "@mui/icons-material/PauseRounded";
 import PlayArrowRounded from "@mui/icons-material/PlayArrowRounded";
 import { Loop } from "@mui/icons-material";
+import { CircularProgress } from "@mui/material";
 
 const Widget = styled("div")(({ theme }) => ({
   padding: 16,
@@ -31,6 +32,7 @@ const TinyText = styled(Typography)({
   opacity: 0.38,
   fontWeight: 500,
   letterSpacing: 0.2,
+  paddingTop:5
 });
 
 export default function Player(props) {
@@ -41,16 +43,28 @@ export default function Player(props) {
   const [loop, setloop] = React.useState(false);
   const [paused, setPaused] = React.useState(false);
   const [position, setPosition] = React.useState(0);
+  const [loading, setLoading] = React.useState(true);
+  const [progress, setProgress] = React.useState(0);
 
   function getDuration(cb) {
     ref.current.addEventListener("loadedmetadata", function () {
       cb(ref.current.duration);
+      setLoading(false);
       ref.current.onended = () => {
         setPaused(false);
       };
     });
   }
+
   React.useEffect(() => {
+
+
+    if(props.click){
+      setProgress(0);
+    }
+    setProgress(prev=>prev);
+    setLoading(prev=>prev);
+
     setPaused(!props.click);
     const timer = setInterval(() => {
       setPosition(Math.round(ref.current.currentTime));
@@ -64,7 +78,7 @@ export default function Player(props) {
   function formatDuration(value) {
     const minute = Math.floor(value / 60);
     const secondLeft = value - minute * 60;
-    return `${minute}:${secondLeft < 9 ? `0${secondLeft}` : secondLeft}`;
+    return `${minute}:${secondLeft < 10 ? `0${secondLeft}` : secondLeft}`;
   }
   const mainIconColor = theme.palette.mode === "dark" ? "#fff" : "#000";
   return (
@@ -82,9 +96,18 @@ export default function Player(props) {
           style={{ display: "none" }}
           loop={loop}
           controls
-          preload="none"
+          preload="metadate"
           ref={ref}
+          onProgress={(e) => {
+            for (var i = 0; i < e.target.buffered.length; i++)
+              setProgress(
+                (e.target.buffered.end(e.target.buffered.length - 1 - i) /
+                  duration) *
+                  100
+              );
+          }}
         ></audio>
+
         <Slider
           aria-label="time-indicator"
           size="small"
@@ -148,14 +171,14 @@ export default function Player(props) {
                 whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
-                maxWidth:"90%"
+                maxWidth: "90%",
               }}
             >
               {props.trackName}
             </p>
             <Typography
               style={{
-                maxWidth:"90%",
+                maxWidth: "90%",
                 whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
@@ -180,17 +203,30 @@ export default function Player(props) {
             <IconButton
               aria-label={paused ? "play" : "pause"}
               onClick={() => {
-                setPaused(!paused);
                 if (!paused) {
-                  ref.current.play();
+                  setPaused(true);
+                  ref.current.play().catch(() => {
+                    console.log("some wait loading....");
+                  });
                   getDuration(function (length) {
                     setDuration(Math.round(length));
                   });
                 } else {
                   ref.current.pause();
+                  setPaused(false);
                 }
               }}
             >
+              {paused &&
+                ((!loading || !props.click)? (
+                  <CircularProgress
+                    variant="determinate"
+                    value={ progress}
+                    sx={{ position: "absolute" }}
+                  />
+                ) : (
+                  <CircularProgress sx={{ position: "absolute" }} />
+                ))}
               {!paused ? (
                 <PlayArrowRounded htmlColor={mainIconColor} />
               ) : (
