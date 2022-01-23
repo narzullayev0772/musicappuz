@@ -40,6 +40,7 @@ const MainController = ({ data, type, parentFunc }) => {
                     getClick={getClick}
                     getUrl={setUrl}
                     key={index}
+                    full={music}
                     trackAutor={music.trackAutor}
                     track={music.track}
                     trackName={music.trackName}
