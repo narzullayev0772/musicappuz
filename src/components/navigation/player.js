@@ -33,6 +33,7 @@ const TinyText = styled(Typography)({
   fontWeight: 500,
   letterSpacing: 0.2,
   paddingTop: 5,
+  paddingBottom:5,
 });
 
 export default function Player(props) {
