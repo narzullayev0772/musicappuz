@@ -32,7 +32,7 @@ const TinyText = styled(Typography)({
   opacity: 0.38,
   fontWeight: 500,
   letterSpacing: 0.2,
-  paddingTop:5
+  paddingTop: 5,
 });
 
 export default function Player(props) {
@@ -57,13 +57,16 @@ export default function Player(props) {
   }
 
   React.useEffect(() => {
-
-
-    if(props.click){
+    if (props.click) {
       setProgress(0);
+      ref.current.onsuspend = (event) => {
+        setLoading(false);
+        console.log("Data loading has been suspended.");
+      };
     }
-    setProgress(prev=>prev);
-    setLoading(prev=>prev);
+
+    setProgress((prev) => prev);
+    setLoading((prev) => prev);
 
     setPaused(!props.click);
     const timer = setInterval(() => {
@@ -218,10 +221,10 @@ export default function Player(props) {
               }}
             >
               {paused &&
-                ((!loading || !props.click)? (
+                (!loading ? (
                   <CircularProgress
                     variant="determinate"
-                    value={ progress}
+                    value={progress}
                     sx={{ position: "absolute" }}
                   />
                 ) : (
