@@ -5,8 +5,6 @@ import MainEuro from "./pages/main/maineuro";
 import MainTurk from "./pages/main/mainturk";
 import MainSearch from "./pages/main/mainSearch";
 function App() {
-
-
   document.cookie="Set-Cookie: promo_shown=1; _gid=GA1.2.2049018004.1642851236; SameSite=Strict"
 
   return (
