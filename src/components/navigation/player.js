@@ -6,7 +6,7 @@ import Slider from "@mui/material/Slider";
 import IconButton from "@mui/material/IconButton";
 import PauseRounded from "@mui/icons-material/PauseRounded";
 import PlayArrowRounded from "@mui/icons-material/PlayArrowRounded";
-import { Download, Loop } from "@mui/icons-material";
+import { Loop } from "@mui/icons-material";
 
 const Widget = styled("div")(({ theme }) => ({
   padding: 16,
@@ -38,26 +38,26 @@ export default function Player(props) {
 
   const [duration, setDuration] = React.useState(0);
   const [color, setColor] = React.useState("#000");
-  const [loop,setloop] = React.useState(false);
+  const [loop, setloop] = React.useState(false);
   const [paused, setPaused] = React.useState(false);
   const [position, setPosition] = React.useState(0);
 
   function getDuration(cb) {
     ref.current.addEventListener("loadedmetadata", function () {
       cb(ref.current.duration);
-      ref.current.onended=()=>{
+      ref.current.onended = () => {
         setPaused(false);
-      }
+      };
     });
   }
-  React.useEffect(()=>{
+  React.useEffect(() => {
     const timer = setInterval(() => {
       setPosition(Math.round(ref.current.currentTime));
     }, 1000);
     return () => {
-      clearInterval(timer)
-    }
-  },[])
+      clearInterval(timer);
+    };
+  }, []);
 
   const theme = useTheme();
   function formatDuration(value) {
@@ -76,7 +76,14 @@ export default function Player(props) {
       }}
     >
       <Widget>
-        <audio src={props.tracks} style={{display:"none"}} loop={loop} controls preload="none" ref={ref}></audio>
+        <audio
+          src={props.tracks}
+          style={{ display: "none" }}
+          loop={loop}
+          controls
+          preload="none"
+          ref={ref}
+        ></audio>
         <Slider
           aria-label="time-indicator"
           size="small"
@@ -134,7 +141,7 @@ export default function Player(props) {
             mt: -1,
           }}
         >
-          <Box sx={{ mr: 5.5, pt: 0.5, minWidth: 0 }}>
+          <Box sx={{ pt: 0.5, minWidth: 0, flex: 3 }}>
             <p
               style={{
                 whiteSpace: "nowrap",
@@ -150,14 +157,12 @@ export default function Player(props) {
               {props.trackAutor}
             </Typography>
           </Box>
-          <div>
+          <div style={{ flex: 1 }}>
             <IconButton
-              onClick={() =>{
-
-                color !== "#000" ? setColor("#000") : setColor("#0088cc")
+              onClick={() => {
+                color !== "#000" ? setColor("#000") : setColor("#0088cc");
                 setloop(!loop);
-              }
-              }
+              }}
             >
               <Loop htmlColor={color} fontSize="small" />
             </IconButton>
@@ -180,11 +185,6 @@ export default function Player(props) {
               ) : (
                 <PauseRounded htmlColor={mainIconColor} />
               )}
-            </IconButton>
-            <IconButton>
-              <a href={props.tracks} download>
-              <Download htmlColor={mainIconColor} fontSize="small" />
-              </a>
             </IconButton>
           </div>
         </Box>
