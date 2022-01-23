@@ -20,7 +20,7 @@ const MainSearch = ({ type }) => {
           setResult(data);
     })
     .catch((error) => {
-      console.error('Error:', error);
+      setResult(null)
     });
   }, [value]);
   return <MainController data={value&&result} type={type} parentFunc={setvalue} />;

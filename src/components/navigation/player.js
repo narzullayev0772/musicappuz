@@ -51,13 +51,14 @@ export default function Player(props) {
     });
   }
   React.useEffect(() => {
+    setPaused(!props.click);
     const timer = setInterval(() => {
       setPosition(Math.round(ref.current.currentTime));
     }, 1000);
     return () => {
       clearInterval(timer);
     };
-  }, []);
+  }, [props]);
 
   const theme = useTheme();
   function formatDuration(value) {
