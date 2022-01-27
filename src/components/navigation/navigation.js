@@ -74,12 +74,13 @@ export default function MenuAppBar({ width, type, parentFunc }) {
                 onBlur={() => {
                   setDisplay("flex");
                 }}
-                onKeyUp={(e)=>{
-                  if(e.key==="Enter"){
+                onKeyUp={(e) => {
+                  if (e.key === "Enter") {
                     e.preventDefault();
-                    parentFunc(search);
-                  }
-                  else{
+                    setTimeout(() => {
+                      parentFunc(search);
+                    }, 2000);
+                  } else {
                     parentFunc(null);
                   }
                 }}

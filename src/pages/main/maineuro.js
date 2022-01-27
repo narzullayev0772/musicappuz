@@ -7,7 +7,7 @@ const MainEuro = ({ type}) => {
 
   useEffect(() => {
     axios
-      .get("https://api-music-uz.herokuapp.com/music/api/udar/")
+      .get(`${process.env.REACT_APP_URL}music/udar`)
       .then(({ data }) => {
         setDataEuro(data);
       });

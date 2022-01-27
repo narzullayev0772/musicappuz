@@ -1,22 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import MainController from "../../components/navigation/mainController";
-const MainTurk = ({ type , data,id }) => {
-
+const MainTurk = ({ type, data, id }) => {
   const [dataTurk, setDataTurk] = useState(null);
   useEffect(() => {
-    axios
-      .get("https://api-music-uz.herokuapp.com/music/api/turk")
-      .then(({ data }) => {
-        setDataTurk(data);
-      });
+    axios.get(`${process.env.REACT_APP_URL}music/turk`).then(({ data }) => {
+      setDataTurk(data);
+    });
   }, []);
-  
-  
 
-  return (
-    <MainController data={dataTurk} type={type}/>
-  )
+  return <MainController data={dataTurk} type={type} />;
 };
 
 export default MainTurk;

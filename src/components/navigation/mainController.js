@@ -10,19 +10,23 @@ const MainController = ({ data, type, parentFunc }) => {
   const [bool, setBool] = useState(true);
   const widthLength = useRef(window.innerWidth);
 
-  const [items,setItems] = useState(null);
+  const [items, setItems] = useState(null);
   const [url, setUrl] = useState({
-    track: "https://uzbmusic.net/uploads/files/otabek_mutalxojayev__otajon.mp3 \r",
+    track:
+      "https://uzbmusic.net/uploads/files/otabek_mutalxojayev__otajon.mp3 \r",
     trackName: "Otabek Mutalxo'jayev ",
     trackAutor: " Otajon ",
   });
 
-  const [played,setPlayed] = useState(url);
+  const [played, setPlayed] = useState(url);
+
+  console.log(data);
+
   useEffect(() => {
     widthLength.current > 678 ? setBool(true) : setBool(false);
     setItems(data);
     setPlayed(url);
-  }, [widthLength, data,played,url]);
+  }, [widthLength, data, played, url]);
 
   const [click, getClick] = useState(false);
 
@@ -35,11 +39,13 @@ const MainController = ({ data, type, parentFunc }) => {
           {data && data !== null ? (
             data.tracks.map(
               (music, index) =>
-                music && (
+                music &&
+                music.trackAutor !== " " && (
                   <MusicItem
                     getClick={getClick}
                     getUrl={setUrl}
                     key={index}
+                    index={index}
                     full={music}
                     trackAutor={music.trackAutor}
                     track={music.track}
@@ -53,14 +59,16 @@ const MainController = ({ data, type, parentFunc }) => {
         </div>
       </div>
       <div style={{ position: "fixed", width: "100%" }}>
-        {click&&<Player
-          trackName={url.trackName}
-          tracks={url.track}
-          trackAutor={url.trackAutor}
-          url={played}
-          click={click}
-          items={items}
-        />}
+        {click && (
+          <Player
+            trackName={url.trackName}
+            tracks={url.track}
+            trackAutor={url.trackAutor}
+            url={played}
+            click={click}
+            items={items}
+          />
+        )}
       </div>
       {!bool && <LabelBottomNavigation />}
     </div>

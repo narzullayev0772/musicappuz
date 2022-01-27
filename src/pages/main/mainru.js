@@ -7,7 +7,7 @@ const MainRu = ({ type}) => {
   
   useEffect(() => {
     axios
-      .get("https://api-music-uz.herokuapp.com/music/api/ru")
+      .get(`${process.env.REACT_APP_URL}music/ru`)
       .then(({ data }) => {
         setDataRu(data);
       });

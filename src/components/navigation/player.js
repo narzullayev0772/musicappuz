@@ -33,7 +33,7 @@ const TinyText = styled(Typography)({
   fontWeight: 500,
   letterSpacing: 0.2,
   paddingTop: 5,
-  paddingBottom:5,
+  paddingBottom: 5,
 });
 
 export default function Player(props) {
@@ -58,21 +58,18 @@ export default function Player(props) {
   }
 
   React.useEffect(() => {
+    setPaused(!props.click);
+    const timer = setInterval(() => {
+      setPosition(Math.round(ref.current.currentTime));
+    }, 1000);
     if (props.click) {
       setProgress(0);
+      setLoading(true);
       ref.current.onsuspend = (event) => {
         setLoading(false);
         console.log("Data loading has been suspended.");
       };
     }
-
-    setProgress((prev) => prev);
-    setLoading((prev) => prev);
-
-    setPaused(!props.click);
-    const timer = setInterval(() => {
-      setPosition(Math.round(ref.current.currentTime));
-    }, 1000);
     return () => {
       clearInterval(timer);
     };
