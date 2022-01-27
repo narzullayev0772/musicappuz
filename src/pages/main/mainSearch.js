@@ -11,7 +11,6 @@ const MainSearch = ({ type }) => {
   }, [value]);
 
   const SearchData = async (data) => {
-    console.log(data);
     const response = await fetch(`${process.env.REACT_APP_URL}music/search`, {
       method: "POST",
       headers: {
