@@ -20,7 +20,6 @@ const MainController = ({ data, type, parentFunc }) => {
 
   const [played, setPlayed] = useState(url);
 
-  console.log(data);
 
   useEffect(() => {
     widthLength.current > 678 ? setBool(true) : setBool(false);
