@@ -6,7 +6,11 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import MyDrawerLeft from "./drawer";
 import SearchIcon from "@mui/icons-material/Search";
+import Comment from "@mui/icons-material/Comment";
+
 import InputBase from "@mui/material/InputBase";
+import { IconButton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -41,6 +45,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function MenuAppBar({ width, type, parentFunc }) {
+  let navigate = useNavigate();
+
   const [search, setSearch] = React.useState("");
   const [display, setDisplay] = React.useState("flex");
 
@@ -58,7 +64,13 @@ export default function MenuAppBar({ width, type, parentFunc }) {
               Webers.uz
             </Typography>
           )}
-          <p>{type}</p>
+          <IconButton
+            onClick={() => {
+              navigate("/comment");
+            }}
+          >
+            <Comment htmlColor="#fff" />
+          </IconButton>
           {!type && (
             <Search style={{ width: "100%" }}>
               <div style={{ position: "absolute", left: "1%", top: "20%" }}>
