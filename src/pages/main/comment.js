@@ -44,7 +44,7 @@ export default function Comment() {
     <div
       style={{
         display: "flex",
-        alignItems: "center",
+        justifyContent: "center",
         width: "100%",
         maxHeight: "100vh",
       }}
@@ -56,7 +56,6 @@ export default function Comment() {
           maxHeight: "100vh",
           overflowY: "auto",
           paddingTop: 0,
-          background: "#0099cc",
           paddingBottom: "10vh",
         }}
       >
