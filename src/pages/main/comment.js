@@ -32,7 +32,7 @@ export default function Comment() {
     ]);
     if (commentText !== undefined) {
       axios
-        .post("https://api-music-uz.herokuapp.com/api/v1/music/comment", {
+        .post(`${process.env.REACT_APP_URL}music/comment`, {
           description: commentText,
           user: "user" + Date.now(),
         })

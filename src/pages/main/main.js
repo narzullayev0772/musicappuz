@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import MainController from "../../components/navigation/mainController";
 const Main = ({ type }) => {
-
   const [dataUZ, setDataUZ] = useState(null);
 
   const [page, setPage] = useState();

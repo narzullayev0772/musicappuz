@@ -6,7 +6,15 @@ import Loading from "../../components/navigation/loading";
 import { useEffect, useRef, useState } from "react";
 import "../../pages/main/main.css";
 import Player from "./player";
+// import axios from "axios";
 const MainController = ({ data, type, parentFunc }) => {
+  // const likeLoad = async (track) => {
+  //   const likes = await axios.get(`${process.env.REACT_APP_URL}music/like`);
+  //   const allLikedMusicArray = likes.data.comments;
+  //   const el = allLikedMusicArray.find((e) => e.track === track);
+  //   if (el) return [track, el.like];
+  // };
+
   const [bool, setBool] = useState(true);
   const widthLength = useRef(window.innerWidth);
 
@@ -19,7 +27,6 @@ const MainController = ({ data, type, parentFunc }) => {
   });
 
   const [played, setPlayed] = useState(url);
-
 
   useEffect(() => {
     widthLength.current > 678 ? setBool(true) : setBool(false);
@@ -49,6 +56,7 @@ const MainController = ({ data, type, parentFunc }) => {
                     trackAutor={music.trackAutor}
                     track={music.track}
                     trackName={music.trackName}
+                    // like={likeLoad(music.track)}
                   />
                 )
             )
