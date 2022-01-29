@@ -84,7 +84,7 @@ export default function MusicItem(props) {
             >
               <IconButton onClick={fetchLike}>
                 {!likeBool ? (
-                  <FavoriteBorder htmlColor="red" />
+                  <FavoriteBorder htmlColor="#fff" />
                 ) : (
                   <Favorite htmlColor="red" />
                 )}
