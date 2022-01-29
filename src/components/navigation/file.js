@@ -30,7 +30,11 @@ export default function MusicItem(props) {
       {props.track ? (
         <List
           className="file"
-          sx={{ padding: "8px", maxWidth: "600px", width: "100%" }}
+          sx={{
+            padding: "8px",
+            maxWidth: "600px",
+            width: "100%",
+          }}
         >
           <ListItem
             onClick={() => {
@@ -45,6 +49,7 @@ export default function MusicItem(props) {
               margin: "5px 0",
               padding: "10px",
               borderRadius: "10px",
+              position: "relative",
             }}
             disableGutters
           >
@@ -73,27 +78,30 @@ export default function MusicItem(props) {
                 secondary={props.trackAutor}
               />
             )}
-            <div
-              style={{
-                position: "absolute",
-                right: 0,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <IconButton onClick={fetchLike}>
-                {!likeBool ? (
-                  <FavoriteBorder htmlColor="#fff" />
-                ) : (
-                  <Favorite htmlColor="red" />
-                )}
-              </IconButton>
-              <p style={{ fontSize: 12, color: "#00000050" }} ref={ref}>
-                {like}
-              </p>
-            </div>
           </ListItem>
+          <div
+            style={{
+              position: "absolute",
+              right: "2%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              zIndex: 0,
+              bottom:"25%",
+              width:"4rem"
+            }}
+          >
+            <IconButton onClick={fetchLike}>
+              {!likeBool ? (
+                <FavoriteBorder htmlColor="#fff" />
+              ) : (
+                <Favorite htmlColor="red" className={"anim"} />
+              )}
+            </IconButton>
+            <p style={{ fontSize: 12, color: "#00000050" }} ref={ref}>
+              {like}
+            </p>
+          </div>
         </List>
       ) : (
         ""
