@@ -179,6 +179,7 @@ export default function Player(props) {
             </p>
             <Typography
               style={{
+                width: "100%",
                 maxWidth: "90%",
                 whiteSpace: "nowrap",
                 overflow: "hidden",

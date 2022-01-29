@@ -74,7 +74,21 @@ export default function MusicItem(props) {
                   whiteSpace: "nowrap",
                   maxWidth: "70%",
                 }}
-                primary={props.trackName}
+                primary={
+                  <span
+                    style={{
+                      maxWidth: "80%",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      fontSize:"1rem",
+                      fontWeight:"bold",
+                      color:"#01579b"
+                    }}
+                  >
+                    {props.trackName}
+                  </span>
+                }
                 secondary={props.trackAutor}
               />
             )}
@@ -87,8 +101,8 @@ export default function MusicItem(props) {
               flexDirection: "column",
               alignItems: "center",
               zIndex: 0,
-              bottom:"25%",
-              width:"4rem"
+              bottom: "25%",
+              width: "4rem",
             }}
           >
             <IconButton onClick={fetchLike}>
