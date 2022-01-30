@@ -11,11 +11,11 @@ const Share = (props) => {
             text:
               props.trackName +
               props.trackAutor +
-              `\n https://webersuz.netlify.app/${Buffer.from(
+              `\n \n https://webersuz.netlify.app/share/${Buffer.from(
                 props.trackName
               ).toString("base64")}&${Buffer.from(props.trackAutor).toString(
                 "base64"
-              )}&${Buffer.from(props.track).toString("base64")}`,
+              )}&${Buffer.from(props.track).toString("base64")}\n`,
             url: "https://webersuz.netlify.app/",
           })
           .then(() => {
