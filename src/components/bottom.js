@@ -25,7 +25,6 @@ export default function LabelBottomNavigation() {
         bottom: 0,
         background: "#0088cc",
         zIndex: 2,
-        padding: "0 100px",
       }}
       value={value}
       showLabels

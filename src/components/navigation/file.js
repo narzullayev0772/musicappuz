@@ -5,6 +5,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Music from "@mui/icons-material/MusicNote";
 import IconButton from "@mui/material/IconButton";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import Share from "./share";
 // import axios from "axios";
 
 export default function MusicItem(props) {
@@ -81,9 +82,9 @@ export default function MusicItem(props) {
                       whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
-                      fontSize:"1rem",
-                      fontWeight:"bold",
-                      color:"#01579b"
+                      fontSize: "1rem",
+                      fontWeight: "bold",
+                      color: "#01579b",
                     }}
                   >
                     {props.trackName}
@@ -116,6 +117,7 @@ export default function MusicItem(props) {
               {like}
             </p>
           </div>
+          {/* <Share props={props} /> */}
         </List>
       ) : (
         ""
