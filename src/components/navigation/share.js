@@ -9,13 +9,15 @@ const Share = (props) => {
           .share({
             title: "MDN",
             text:
-              "🎵"+props.trackName + " - "+
+              "🎵" +
+              props.trackName +
+              " - " +
               props.trackAutor +
               `\n \n https://webersuz.netlify.app/share/${Buffer.from(
                 props.trackName
-              ).toString("base64")}&${Buffer.from(props.trackAutor).toString(
+              ).toString("base64")}+${Buffer.from(props.trackAutor).toString(
                 "base64"
-              )}&${Buffer.from(props.track).toString("base64")}\n`,
+              )}+${Buffer.from(props.track).toString("base64")}\n`,
             url: "\n https://webersuz.netlify.app/",
           })
           .then(() => {

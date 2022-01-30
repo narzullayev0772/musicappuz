@@ -5,7 +5,7 @@ import Player from "../../components/navigation/player";
 
 const SharePage = () => {
   let { sharedUrl } = useParams();
-  let [trackName, trackAutor, track] = sharedUrl.split("&");
+  let [trackName, trackAutor, track] = sharedUrl.split("+");
 
   const bool = false;
 
