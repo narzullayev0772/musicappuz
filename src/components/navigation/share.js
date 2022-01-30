@@ -9,7 +9,7 @@ const Share = (props) => {
           .share({
             title: "MDN",
             text:
-              props.trackName +
+              "🎵"+props.trackName + " - "+
               props.trackAutor +
               `\n \n https://webersuz.netlify.app/share/${Buffer.from(
                 props.trackName
