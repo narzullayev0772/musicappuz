@@ -1,16 +1,16 @@
-import { useRef, useState } from "react";
-import { useParams } from "react-router-dom";
-import LabelBottomNavigation from "../../components/bottom";
-import MenuAppBar from "../../components/navigation/navigation";
-import Player from "../../components/navigation/player";
+// import { useRef, useState } from "react";
+// import { useParams } from "react-router-dom";
+// import LabelBottomNavigation from "../../components/bottom";
+// import MenuAppBar from "../../components/navigation/navigation";
+// import Player from "../../components/navigation/player";
 import Share from "./../../components/navigation/share";
 
 const SharePage = (props) => {
-  let { sharedUrl } = useParams();
-  let [trackName, trackAutor, track] = sharedUrl.split("&");
+//   let { sharedUrl } = useParams();
+//   let [trackName, trackAutor, track] = sharedUrl.split("&");
 
-  console.log(trackName);
-  const [bool, setBool] = useState(false);
+//   console.log(trackName);
+//   const [bool, setBool] = useState(false);
 
   return (
     <>
