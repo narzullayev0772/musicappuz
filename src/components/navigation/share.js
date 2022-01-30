@@ -16,7 +16,7 @@ const Share = (props) => {
               ).toString("base64")}&${Buffer.from(props.trackAutor).toString(
                 "base64"
               )}&${Buffer.from(props.track).toString("base64")}\n`,
-            url: "https://webersuz.netlify.app/",
+            url: "\n https://webersuz.netlify.app/",
           })
           .then(() => {
             console.log("success");
