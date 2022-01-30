@@ -1,8 +1,12 @@
 import { IconButton } from "@mui/material";
 import IconShare from "@mui/icons-material/Share";
 
-const Share = (props) => {
-  console.log(props);
+const Share = () => {
+  const props = {
+    track: "A",
+    trackName: "B",
+    trackAutor: "C",
+  };
   return (
     <IconButton
       onClick={(e) => {

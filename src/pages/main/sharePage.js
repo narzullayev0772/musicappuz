@@ -9,16 +9,17 @@ const SharePage = (props) => {
   let { sharedUrl } = useParams();
   let [trackName, trackAutor, track] = sharedUrl.split("&");
 
+  console.log(trackName);
   const [bool, setBool] = useState(false);
 
   return (
     <>
-      <div style={{ width: "100%" }}>
+      {/* <div style={{ width: "100%" }}>
         <MenuAppBar width={bool} type={true} />
-      </div>
-      <Share trackName={trackName} tracks={track} trackAutor={trackAutor} />
+      </div> */}
+      <Share />
 
-      <Player
+      {/* <Player
         trackName={trackName}
         tracks={track}
         trackAutor={trackAutor}
@@ -26,7 +27,7 @@ const SharePage = (props) => {
         click={true}
         // items={items}
       />
-      {!bool && <LabelBottomNavigation />}
+      {!bool && <LabelBottomNavigation />} */}
     </>
   );
 };
