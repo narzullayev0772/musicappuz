@@ -1,20 +1,16 @@
 import { IconButton } from "@mui/material";
-import IconShare from "@mui/icons-material/Share";
+import IconShare from "@mui/icons-material/Send";
 
-const Share = () => {
-  const props = {
-    track: "A",
-    trackName: "B",
-    trackAutor: "C",
-  };
+const Share = (props) => {
   return (
     <IconButton
       onClick={(e) => {
-        e.target.addEventListener("click", async () => {
+        e.currentTarget.addEventListener("click", async () => {
           try {
+            if (navigator.canShare()) console.log("can share");
             await navigator.share({
               title: "Webers.uz",
-              text: props.trackName + props.trackAutor,
+              text: props.trackName + " - " + props.trackAutor + "\n",
               url:
                 "https://webersuz.netlify.app/share/" +
                 Buffer.from(props.trackName).toString("base64") +
@@ -30,7 +26,7 @@ const Share = () => {
         });
       }}
     >
-      <IconShare />
+      <IconShare htmlColor="#0088cc" />
     </IconButton>
   );
 };

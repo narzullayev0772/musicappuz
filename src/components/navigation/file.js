@@ -5,7 +5,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Music from "@mui/icons-material/MusicNote";
 import IconButton from "@mui/material/IconButton";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
-// import Share from "./share";
+import Share from "./share";
 // import axios from "axios";
 
 export default function MusicItem(props) {
@@ -73,12 +73,11 @@ export default function MusicItem(props) {
                   textOverflow: "ellipsis",
                   overflow: "hidden",
                   whiteSpace: "nowrap",
-                  maxWidth: "70%",
+                  maxWidth: "65%",
                 }}
                 primary={
                   <span
                     style={{
-                      maxWidth: "80%",
                       whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
@@ -90,34 +89,53 @@ export default function MusicItem(props) {
                     {props.trackName}
                   </span>
                 }
-                secondary={props.trackAutor}
+                secondary={
+                  <span
+                    style={{
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {props.trackAutor}
+                  </span>
+                }
               />
             )}
           </ListItem>
           <div
             style={{
               position: "absolute",
-              right: "2%",
+              right: "2.5%",
               display: "flex",
-              flexDirection: "column",
+              flexDirection: "row",
               alignItems: "center",
               zIndex: 0,
-              bottom: "25%",
-              width: "4rem",
+              bottom: 0,
+              width: "5rem",
+              height: "100%",
             }}
           >
-            <IconButton onClick={fetchLike}>
-              {!likeBool ? (
-                <FavoriteBorder htmlColor="#fff" />
-              ) : (
-                <Favorite htmlColor="red" className={"anim"} />
-              )}
-            </IconButton>
-            <p style={{ fontSize: 12, color: "#00000050" }} ref={ref}>
-              {like}
-            </p>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <IconButton onClick={fetchLike}>
+                {!likeBool ? (
+                  <FavoriteBorder htmlColor="#fff" />
+                ) : (
+                  <Favorite htmlColor="red" className={"anim"} />
+                )}
+              </IconButton>
+              <p style={{ fontSize: 12, color: "#00000050" }} ref={ref}>
+                {likeBool ? like : ""}
+              </p>
+            </div>
+            <Share props={props} />
           </div>
-          {/* <Share props={props} /> */}
         </List>
       ) : (
         ""
