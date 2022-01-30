@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 import LabelBottomNavigation from "../../components/bottom";
 import MenuAppBar from "../../components/navigation/navigation";
@@ -8,7 +7,7 @@ const SharePage = (props) => {
   let { sharedUrl } = useParams();
   let [trackName, trackAutor, track] = sharedUrl.split("&");
 
-  const [bool, setBool] = useState(false);
+  const bool = false;
 
   return (
     <>
