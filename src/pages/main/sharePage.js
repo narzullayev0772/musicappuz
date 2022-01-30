@@ -3,7 +3,7 @@ import LabelBottomNavigation from "../../components/bottom";
 import MenuAppBar from "../../components/navigation/navigation";
 import Player from "../../components/navigation/player";
 
-const SharePage = (props) => {
+const SharePage = () => {
   let { sharedUrl } = useParams();
   let [trackName, trackAutor, track] = sharedUrl.split("&");
 

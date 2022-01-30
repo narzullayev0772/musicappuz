@@ -134,7 +134,11 @@ export default function MusicItem(props) {
                 {likeBool ? like : ""}
               </p>
             </div>
-            <Share props={props} />
+            <Share
+              trackAutor={props.trackAutor}
+              track={props.track}
+              trackName={props.trackName}
+            />
           </div>
         </List>
       ) : (

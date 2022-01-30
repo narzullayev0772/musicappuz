@@ -8,14 +8,21 @@ const Share = (props) => {
         navigator
           .share({
             title: "MDN",
-            text: props.trackName + props.trackAutor,
+            text:
+              props.trackName +
+              props.trackAutor +
+              `\n https://webersuz.netlify.app/${Buffer.from(
+                props.trackName
+              ).toString("base64")}&${Buffer.from(props.trackAutor).toString(
+                "base64"
+              )}&${Buffer.from(props.track).toString("base64")}`,
             url: "https://webersuz.netlify.app/",
           })
           .then(() => {
             console.log("success");
           })
           .catch((error) => {
-            alert("Can't send 😞");
+            console.log("canceled");
           });
       }}
     >
