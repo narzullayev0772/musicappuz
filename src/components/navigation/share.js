@@ -9,13 +9,12 @@ const Share = (props) => {
           .share({
             title: "MDN",
             text: props.trackName + props.trackAutor,
-            url: "https://developer.mozilla.org",
+            url: "https://webersuz.netlify.app/",
           })
           .then(() => {
             console.log("success");
           })
           .catch((error) => {
-            console.log(error);
             alert("Can't send 😞");
           });
       }}
