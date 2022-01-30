@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import MyDrawerLeft from "./drawer";
 import SearchIcon from "@mui/icons-material/Search";
 import Comment from "@mui/icons-material/Comment";
-
+import Badge from '@mui/material/Badge';
 import InputBase from "@mui/material/InputBase";
 import { IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -68,8 +68,10 @@ export default function MenuAppBar({ width, type, parentFunc }) {
             onClick={() => {
               navigate("/comment");
             }}
-          >
-            <Comment htmlColor="#fff" />
+          ><Badge color="secondary" badgeContent={20}>
+<Comment htmlColor="#fff" />
+</Badge>
+            
           </IconButton>}
           {!type && (
             <Search style={{ width: "100%" }}>
