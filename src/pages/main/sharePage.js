@@ -24,9 +24,9 @@ const SharePage = () => {
         </a>
       </div>
       <Player
-        trackName={Buffer.from(trackName, "base64").toString("ascii")}
-        tracks={Buffer.from(track, "base64").toString("ascii")}
-        trackAutor={Buffer.from(trackAutor, "base64").toString("ascii")}
+        trackName={Buffer.from(trackName, "base64").toString("utf-8")}
+        tracks={Buffer.from(track, "base64").toString("utf-8")}
+        trackAutor={Buffer.from(trackAutor, "base64").toString("utf-8")}
         // url={played}
         click={true}
         // items={items}
