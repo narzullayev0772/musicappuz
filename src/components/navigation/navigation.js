@@ -96,7 +96,7 @@ export default function MenuAppBar({ width, type, parentFunc }) {
 
           {!type && (
             <Search style={{ width: "100%" }}>
-              <div style={{ position: "absolute", left: "1%", top: "20%" }}>
+              <div style={{ position: "absolute", left: "2%", top: "20%" }}>
                 <SearchIcon />
               </div>
               <StyledInputBase

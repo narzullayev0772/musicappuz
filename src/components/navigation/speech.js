@@ -64,7 +64,7 @@ const Speech = ({ setSpeechText, setStop, lang }) => {
       className="microphone-wrapper"
       style={{
         position: "absolute",
-        right: "18%",
+        right: "20%",
       }}
     >
       <div className="mircophone-container">
