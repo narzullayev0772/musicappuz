@@ -8,7 +8,7 @@
 body {
   margin: 0 !important;
 }
-@media (max-width: 678px) {
+@media (min-width: 678px) {
   #root {
     display: none;
   }
