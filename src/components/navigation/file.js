@@ -73,7 +73,7 @@ export default function MusicItem(props) {
                   textOverflow: "ellipsis",
                   overflow: "hidden",
                   whiteSpace: "nowrap",
-                  maxWidth: "65%",
+                  maxWidth: "60%",
                 }}
                 primary={
                   <span

@@ -109,6 +109,18 @@ export default function Player(props) {
           }}
         ></audio>
 
+        {props.tracks.includes("down.") && (
+          <a
+            href={props.tracks}
+            style={{
+              textAlign: "center",
+              color: "#0088cc",
+              fontWeight: "bold",
+            }}
+          >
+            Downlaod
+          </a>
+        )}
         <Slider
           aria-label="time-indicator"
           size="small"

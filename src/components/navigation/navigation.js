@@ -10,7 +10,9 @@ import Comment from "@mui/icons-material/Comment";
 import Badge from "@mui/material/Badge";
 import InputBase from "@mui/material/InputBase";
 import { IconButton } from "@mui/material";
+import { FormControl, MenuItem, Select } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import Speech from "./speech";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -50,6 +52,22 @@ export default function MenuAppBar({ width, type, parentFunc }) {
   const [search, setSearch] = React.useState("");
   const [display, setDisplay] = React.useState("flex");
 
+  const [speechText, setSpeechText] = React.useState("");
+  const [stop, setStop] = React.useState(false);
+  const [lang, setLang] = React.useState("uz");
+
+  React.useEffect(() => {
+    if (!type) parentFunc(!stop ? speechText : null);
+    stop && setSearch(speechText);
+  }, [speechText, parentFunc, stop, type]);
+
+  const [age, setAge] = React.useState("");
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+    setLang(event.target.value);
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }} style={{ position: "sticky", top: 0, zIndex: 2 }}>
       <AppBar position="static">
@@ -65,15 +83,32 @@ export default function MenuAppBar({ width, type, parentFunc }) {
             </Typography>
           )}
           {type && (
-            <IconButton
-              onClick={() => {
-                navigate("/comment");
-              }}
-            >
-              <Badge color="secondary" badgeContent={20}>
-                <Comment htmlColor="#fff" />
-              </Badge>
-            </IconButton>
+            <>
+              <Box sx={{ maxWidth: 120, mx: 1 }}>
+                <FormControl fullWidth variant="standard">
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={age}
+                    label="UZ"
+                    onChange={handleChange}
+                  >
+                    <MenuItem value={"uz-UZ"}>UZ</MenuItem>
+                    <MenuItem value={"ru"}>RU</MenuItem>
+                    <MenuItem value={"en-US"}>EN</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+              <IconButton
+                onClick={() => {
+                  navigate("/comment");
+                }}
+              >
+                <Badge color="secondary" badgeContent={20}>
+                  <Comment htmlColor="#fff" />
+                </Badge>
+              </IconButton>
+            </>
           )}
           {!type && (
             <Search style={{ width: "100%" }}>
@@ -93,9 +128,7 @@ export default function MenuAppBar({ width, type, parentFunc }) {
                 onKeyUp={(e) => {
                   if (e.key === "Enter") {
                     e.preventDefault();
-                    setTimeout(() => {
-                      parentFunc(search);
-                    }, 2000);
+                    parentFunc(search);
                   } else {
                     parentFunc(null);
                   }
@@ -106,6 +139,13 @@ export default function MenuAppBar({ width, type, parentFunc }) {
                 value={search}
               />
             </Search>
+          )}
+          {!type && (
+            <Speech
+              setSpeechText={setSpeechText}
+              setStop={setStop}
+              lang={lang}
+            />
           )}
         </Toolbar>
       </AppBar>

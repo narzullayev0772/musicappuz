@@ -4,7 +4,7 @@ import MainController from "../../components/navigation/mainController";
 const MainSearch = ({ type }) => {
   const [result, setResult] = useState(null);
 
-  const [value, setvalue] = useState("");
+  const [value, setvalue] = useState("loremipsumdoleramet");
   useEffect(() => {
     const data = { name: value };
     SearchData(data);
