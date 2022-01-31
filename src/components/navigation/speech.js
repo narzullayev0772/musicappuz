@@ -20,15 +20,31 @@ const style = {
   p: 4,
 };
 
-const Speech = ({ setSpeechText, setStop,lang }) => {
-  const { transcript, listening } = useSpeechRecognition();
+const Speech = ({ setSpeechText, setStop, lang }) => {
+  const commands = [
+    {
+      command: "exit *",
+      callback: () => {
+        window.close();
+      },
+    },
+    {
+      command: "open *",
+      callback: (website) => {
+        window.open("http://" + website.split(" ").join(""));
+      },
+    },
+  ];
+
+  const { transcript, listening } = useSpeechRecognition(commands);
   const microphoneRef = useRef(null);
   const [open, setOpen] = useState(false);
   useEffect(() => {
     setOpen(listening);
     setSpeechText(transcript);
     setStop(listening);
-  }, [listening, setSpeechText, transcript, setStop]);
+    console.log(lang);
+  }, [listening, setSpeechText, transcript, setStop, lang]);
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return alert("Sizning browseringizda ushbu funksiya yo'q 😞");
   }
@@ -44,7 +60,13 @@ const Speech = ({ setSpeechText, setStop,lang }) => {
     setOpen(false);
   };
   return (
-    <div className="microphone-wrapper">
+    <div
+      className="microphone-wrapper"
+      style={{
+        position: "absolute",
+        right: "18%",
+      }}
+    >
       <div className="mircophone-container">
         <IconButton ref={microphoneRef} onClick={handleListing}>
           <Microwave htmlColor="#fff" />

@@ -54,7 +54,7 @@ export default function MenuAppBar({ width, type, parentFunc }) {
 
   const [speechText, setSpeechText] = React.useState("");
   const [stop, setStop] = React.useState(false);
-  const [lang, setLang] = React.useState("uz");
+  const [lang, setLang] = React.useState("en-US");
 
   React.useEffect(() => {
     if (!type) parentFunc(!stop ? speechText : null);
@@ -83,33 +83,17 @@ export default function MenuAppBar({ width, type, parentFunc }) {
             </Typography>
           )}
           {type && (
-            <>
-              <Box sx={{ maxWidth: 120, mx: 1 }}>
-                <FormControl fullWidth variant="standard">
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={age}
-                    label="UZ"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={"uz-UZ"}>UZ</MenuItem>
-                    <MenuItem value={"ru"}>RU</MenuItem>
-                    <MenuItem value={"en-US"}>EN</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-              <IconButton
-                onClick={() => {
-                  navigate("/comment");
-                }}
-              >
-                <Badge color="secondary" badgeContent={20}>
-                  <Comment htmlColor="#fff" />
-                </Badge>
-              </IconButton>
-            </>
+            <IconButton
+              onClick={() => {
+                navigate("/comment");
+              }}
+            >
+              <Badge color="secondary" badgeContent={20}>
+                <Comment htmlColor="#fff" />
+              </Badge>
+            </IconButton>
           )}
+
           {!type && (
             <Search style={{ width: "100%" }}>
               <div style={{ position: "absolute", left: "1%", top: "20%" }}>
@@ -146,6 +130,23 @@ export default function MenuAppBar({ width, type, parentFunc }) {
               setStop={setStop}
               lang={lang}
             />
+          )}
+          {!type && (
+            <Box sx={{ maxWidth: 120, mx: 1 }}>
+              <FormControl fullWidth variant="standard">
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={age}
+                  label="UZ"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={"uz-UZ"}>UZ</MenuItem>
+                  <MenuItem value={"ru"}>RU</MenuItem>
+                  <MenuItem value={"en-US"}>EN</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
           )}
         </Toolbar>
       </AppBar>
