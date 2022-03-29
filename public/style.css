@@ -8,8 +8,4 @@
 body {
   margin: 0 !important;
 }
-@media (min-width: 678px) {
-  #root {
-    display: none;
-  }
-}
+
